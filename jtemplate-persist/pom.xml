@@ -12,7 +12,7 @@
   </parent>
 
   <artifactId>jtemplate-persist</artifactId>
-  <name>Persistence Module</name>
+  <name>Persistence Module Project</name>
   <packaging>jar</packaging>
 
   <dependencies>

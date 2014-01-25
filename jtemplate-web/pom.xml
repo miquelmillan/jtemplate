@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>jtemplate-web</artifactId>
-  <name>Webapp module</name>
+  <name>Webapp Module Project</name>
   <packaging>war</packaging>
   
   <dependencies>
