@@ -1,5 +1,5 @@
-package com.mm.module.one;
-package com.otv.user.service;
+package com.mm.model.dao;
+package com.otv.user.dao;
 
 import java.util.List;
 
@@ -7,15 +7,15 @@ import com.otv.model.User;
 
 /**
  * 
- * User Service Interface
+ * User DAO Interface
  * 
  * @author onlinetechvision.com
  * @since 25 Mar 2012
  * @version 1.0.0
  *
  */
-public interface IUserService {
-	
+public interface IUserDAO {
+
 	/**
 	 * Add User
 	 * 
@@ -29,7 +29,7 @@ public interface IUserService {
 	 * @param  User user
 	 */
 	public void updateUser(User user);
-
+	
 	/**
 	 * Delete User
 	 * 
@@ -47,7 +47,6 @@ public interface IUserService {
 	/**
 	 * Get User List
 	 * 
-	 * @return List - User list
 	 */
 	public List<User> getUsers();
 }

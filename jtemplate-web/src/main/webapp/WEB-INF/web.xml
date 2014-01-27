@@ -6,7 +6,7 @@
 		 id="WebApp_ID" 
 		 version="2.5">
 		 
-	  <display-name>OTV_JSF_PrimeFaces_Spring_Hibernate</display-name>
+	  <display-name>Jtemplate WebApp</display-name>
 	   
 	  <!-- Spring Context Configuration' s Path definition -->
       <context-param>
