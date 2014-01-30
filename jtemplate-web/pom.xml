@@ -23,6 +23,17 @@
 	</repositories>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.mm.jtemplate</groupId>
+			<artifactId>jtemplate-module</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mm.jtemplate</groupId>
+			<artifactId>jtemplate-persist</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+		
 		<!-- JSF dependencies -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>

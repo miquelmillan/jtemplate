@@ -4,155 +4,92 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.dao.DataAccessException;
+
+import com.mm.model.domain.Entity;
+import com.mm.module.one.IEntityService;
 
 /**
  * 
- * User Managed Bean
+ * Entity Backed Bean
  * 
- * @author onlinetechvision.com
- * @since 25 Mar 2012
+ * @author Miquel Millan
  * @version 1.0.0
  *
  */
-@ManagedBean(name="userMB")
-@RequestScoped
+
+@Named("entityBBean")
+@Scope("session")
 public class EntityBBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private static final String SUCCESS = "success";
-	private static final String ERROR   = "error";
-	
-	Spring User Service is injected...
-	@ManagedProperty(value="#{UserService}")
-	IUserService userService;
-	
-	List<User> userList;
+
+	@Inject
+	private IEntityService entityService;
 	
 	private int id;
-	private String name;
-	private String surname;
+	private String attribute;
+	private List<Entity> entityList;
 	
-	/**
-	 * Add User
-	 * 
-	 * @return String - Response Message
-	 */
-	public String addUser() {
+
+	public void addEntity() {
 		try {
-			User user = new User();
-			user.setId(getId());
-			user.setName(getName());
-			user.setSurname(getSurname());
-			getUserService().addUser(user);
-			return SUCCESS;
+			Entity entity = new Entity();
+			entity.setId(getId());
+			entity.setAttribute(getAttribute());
+			getEntityService().addEntity(entity);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Added!", "Message: "));  
+			
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		} 	
 		
-		return ERROR;
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "D'oh!", "Message: ")); 
 	}
 	
-	/**
-	 * Reset Fields
-	 * 
-	 */
+
 	public void reset() {
 		this.setId(0);
-		this.setName("");
-		this.setSurname("");
-	}
-	
-	/**
-	 * Get User List
-	 * 
-	 * @return List - User List
-	 */
-	public List<User> getUserList() {
-		userList = new ArrayList<User>();
-		userList.addAll(getUserService().getUsers());
-		return userList;
-	}
-	
-	/**
-	 * Get User Service
-	 * 
-	 * @return IUserService - User Service
-	 */
-	public IUserService getUserService() {
-		return userService;
+		this.setAttribute("");
 	}
 
-	/**
-	 * Set User Service
-	 * 
-	 * @param IUserService - User Service
-	 */
-	public void setUserService(IUserService userService) {
-		this.userService = userService;
+	public List<Entity> getEntityList() {
+		entityList = new ArrayList<Entity>();
+		entityList.addAll(getEntityService().getEntitys());
+		return entityList;
 	}
-	
-	/**
-	 * Set User List
-	 * 
-	 * @param List - User List
-	 */
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
+
+	public IEntityService getEntityService() {
+		return entityService;
 	}
-	
-	/**
-	 * Get User Id
-	 * 
-	 * @return int - User Id
-	 */
+
+	public void setEntityService(IEntityService entityService) {
+		this.entityService = entityService;
+	}
+
+	public void setEntityList(List<Entity> entityList) {
+		this.entityList = entityList;
+	}
+
 	public int getId() {
 		return id;
 	}
 
-	/**
-	 * Set User Id
-	 * 
-	 * @param int - User Id
-	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	/**
-	 * Get User Name
-	 * 
-	 * @return String - User Name
-	 */
-	public String getName() {
-		return name;
+	public String getAttribute() {
+		return attribute;
 	}
 	
-	/**
-	 * Set User Name
-	 * 
-	 * @param String - User Name
-	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setAttribute(String attribute) {
+		this.attribute = attribute;
 	}
-	
-	/**
-	 * Get User Surname
-	 * 
-	 * @return String - User Surname
-	 */
-	public String getSurname() {
-		return surname;
-	}
-	
-	/**
-	 * Set User Surname
-	 * 
-	 * @param String - User Surname
-	 */
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-	
  }

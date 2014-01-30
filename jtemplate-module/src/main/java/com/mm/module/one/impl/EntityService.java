@@ -1,97 +1,59 @@
 package com.mm.module.one.impl;
-package com.mm.module.one.impl;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mm.module.one.IUserService;
-import com.otv.model.User;
-import com.otv.user.dao.IUserDAO;
+import com.mm.model.dao.IEntityDAO;
+import com.mm.model.domain.Entity;
+import com.mm.module.one.IEntityService;
 
 /**
  * 
- * User Service
+ * Entity Service Interface
  * 
- * @author onlinetechvision.com
- * @since 25 Mar 2012
+ * @author Miquel Millan
  * @version 1.0.0
  *
  */
+@Named
 @Transactional(readOnly = true)
-public class UserService implements IUserService {
+public class EntityService implements IEntityService {
 
-	 UserDAO is injected...
-	IUserDAO userDAO;
-	
-	/**
-	 * Add User
-	 * 
-	 * @param  User user
-	 */
+	@Inject
+	IEntityDAO entityDAO;
+
 	@Transactional(readOnly = false)
-	@Override
-	public void addUser(User user) {
-		getUserDAO().addUser(user);
+	public void addEntity(Entity entity) {
+		getEntityDAO().addEntity(entity);
 	}
 
-	/**
-	 * Delete User
-	 * 
-	 * @param  User user
-	 */
 	@Transactional(readOnly = false)
-	@Override
-	public void deleteUser(User user) {
-		getUserDAO().deleteUser(user);
+	public void deleteEntity(Entity entity) {
+		getEntityDAO().deleteEntity(entity);
 	}
-	
-	/**
-	 * Update User
-	 * 
-	 * @param  User user
-	 */
+
 	@Transactional(readOnly = false)
-	@Override
-	public void updateUser(User user) {
-		getUserDAO().updateUser(user);
-	}
-	
-	/**
-	 * Get User
-	 * 
-	 * @param  int User Id
-	 */
-	@Override
-	public User getUserById(int id) {
-		return getUserDAO().getUserById(id);
+	public void updateEntity(Entity entity) {
+		getEntityDAO().updateEntity(entity);
 	}
 
-	/**
-	 * Get User List
-	 * 
-	 */
-	@Override
-	public List<User> getUsers() {	
-		return getUserDAO().getUsers();
+	public Entity getEntityById(int id) {
+		return getEntityDAO().getEntity(id);
 	}
 
-	/**
-	 * Get User DAO
-	 * 
-	 * @return IUserDAO - User DAO
-	 */
-	public IUserDAO getUserDAO() {
-		return userDAO;
+	public List<Entity> getEntitys() {	
+		return getEntityDAO().getEntities();
 	}
 
-	/**
-	 * Set User DAO
-	 * 
-	 * @param IUserDAO - User DAO
-	 */
-	public void setUserDAO(IUserDAO userDAO) {
-		this.userDAO = userDAO;
+	public IEntityDAO getEntityDAO() {
+		return entityDAO;
 	}
 
+	public void setEntityDAO(IEntityDAO entityDAO) {
+		this.entityDAO = entityDAO;
+	}
 }

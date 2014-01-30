@@ -2,13 +2,14 @@
      xmlns:h="http://java.sun.com/jsf/html"      
       xmlns:f="http://java.sun.com/jsf/core"
      xmlns:p="http://primefaces.org/ui">  
- <h:head><title>Welcome to OTV_JSF_Spring_Hibernate_Project</title></h:head>  
+ <h:head><title>Welcome to JTemplate</title></h:head>  
  <h:body>
+ 	<p:messages></p:messages>
      <h:form>      
 	     <table> 
 		     <tr>
 		     	<td><h:outputLabel for="id" value="Id : " /></td>
-		     	<td><p:inputText id="id" value="#{userMB.id}">
+		     	<td><p:inputText id="id" value="#{entityBBean.id}">
 		     			<f:converter converterId="javax.faces.Integer"/>
 		     		    <p:ajax event="blur" update="idMsg" />
 		     		</p:inputText>
@@ -16,26 +17,17 @@
 		     	</td>
 		     </tr>
 		     <tr>
-		     	<td><h:outputLabel for="name" value="Name : " /></td>
-		     	<td><p:inputText id="name" value="#{userMB.name}">
+		     	<td><h:outputLabel for="attribute" value="Attribute : " /></td>   
+		     	<td><p:inputText id="attribute" value="#{entityBBean.attribute}"> 
 		     			<f:validateLength minimum="5" /> 
-		     			<p:ajax event="blur" update="nameMsg" />
+		     			<p:ajax event="blur" update="attributeMsg" />  
 		     		</p:inputText>
-		     		<p:message id="nameMsg" for="name" display="icon"/> 
-		     	</td>
-		     </tr>
-		     <tr>
-		     	<td><h:outputLabel for="surname" value="Surname : " /></td>   
-		     	<td><p:inputText id="surname" value="#{userMB.surname}"> 
-		     			<f:validateLength minimum="5" /> 
-		     			<p:ajax event="blur" update="surnameMsg" />  
-		     		</p:inputText>
-		     		<p:message id="surnameMsg" for="surname" display="icon"/> 
+		     		<p:message id="attributeMsg" for="attribute" display="icon"/> 
 		     	</td>    
 		     </tr>            
 	         <tr>
-		     	<td><p:commandButton id="addUser" value="Add" action="#{userMB.addUser}" ajax="false"/></td>
-		     	<td><p:commandButton id="reset" value="Reset" action="#{userMB.reset}" ajax="false"/></td>
+		     	<td><p:commandButton id="addUser" value="Add" actionListener="#{entityBBean.addEntity}" ajax="false"/></td>
+		     	<td><p:commandButton id="reset" value="Reset" actionListener="#{entityBBean.reset}" ajax="false"/></td>
 		     </tr>   
 	     </table>
      </h:form>      

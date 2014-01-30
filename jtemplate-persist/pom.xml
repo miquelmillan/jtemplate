@@ -34,13 +34,6 @@
 			<version>3.12.1.GA</version>
 		</dependency>
 
-		<!-- c3p0 dependency -->
-		<dependency>
-			<groupId>c3p0</groupId>
-			<artifactId>c3p0</artifactId>
-			<version>0.9.1.2</version>
-		</dependency>
-
 		<!-- MySQL Java Connector dependency -->
 		<dependency>
 			<groupId>mysql</groupId>

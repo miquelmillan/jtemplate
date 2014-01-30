@@ -1,52 +1,25 @@
 package com.mm.model.dao;
-package com.otv.user.dao;
 
 import java.util.List;
 
-import com.otv.model.User;
+import com.mm.model.domain.Entity;
 
 /**
  * 
- * User DAO Interface
+ * Entity DAO Interface
  * 
- * @author onlinetechvision.com
- * @since 25 Mar 2012
+ * @author Miquel Millan
  * @version 1.0.0
  *
  */
-public interface IUserDAO {
+public interface IEntityDAO {
+	public void addEntity(Entity entity);
 
-	/**
-	 * Add User
-	 * 
-	 * @param  User user
-	 */
-	public void addUser(User user);
+	public void updateEntity(Entity entity);
 	
-	/**
-	 * Update User
-	 * 
-	 * @param  User user
-	 */
-	public void updateUser(User user);
+	public void deleteEntity(Entity entity);
 	
-	/**
-	 * Delete User
-	 * 
-	 * @param  User user
-	 */
-	public void deleteUser(User user);
-	
-	/**
-	 * Get User
-	 * 
-	 * @param  int User Id
-	 */
-	public User getUserById(int id);
-	
-	/**
-	 * Get User List
-	 * 
-	 */
-	public List<User> getUsers();
+	public Entity getEntity(int id);
+
+	public List<Entity> getEntities();
 }
