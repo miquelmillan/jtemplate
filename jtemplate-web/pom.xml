@@ -33,7 +33,7 @@
 			<artifactId>jtemplate-persist</artifactId>
 			<version>0.1-SNAPSHOT</version>
 		</dependency>
-		
+
 		<!-- JSF dependencies -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -59,10 +59,5 @@
 			<artifactId>primefaces</artifactId>
 			<version>4.0</version>
 		</dependency>
-
 	</dependencies>
-
-	<build>
-		<finalName>jtemplate</finalName>
-	</build>
 </project>

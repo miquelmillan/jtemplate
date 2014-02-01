@@ -48,9 +48,9 @@ public class EntityBBean implements Serializable {
 			
 		} catch (DataAccessException e) {
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "D'oh!", "Message: ")); 
 		} 	
 		
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "D'oh!", "Message: ")); 
 	}
 	
 

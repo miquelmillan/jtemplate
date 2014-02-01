@@ -5,7 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import com.mm.model.dao.IEntityDAO;
 import com.mm.model.domain.Entity;
@@ -16,7 +18,7 @@ import com.mm.model.domain.Entity;
  * 
  * @author Miquel Millan
  * @version 1.0.0
- *
+ * 
  */
 @Named
 public class EntityDAO implements IEntityDAO {
@@ -28,32 +30,50 @@ public class EntityDAO implements IEntityDAO {
 	}
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-	}
-	
-	public void addEntity(Entity entity) {
-		getSessionFactory().getCurrentSession().save(entity);
+		this.sessionFactory = sessionFactory;
 	}
 
+	public void addEntity(Entity entity) {
+		Session session = getSessionFactory().getCurrentSession();
+		Transaction trans = session.beginTransaction();
+		session.save(entity);
+		trans.commit();
+	}
 
 	public void deleteEntity(Entity entity) {
-		getSessionFactory().getCurrentSession().delete(entity);
+		Session session = getSessionFactory().getCurrentSession();
+		Transaction trans = session.beginTransaction();
+		session.delete(entity);
+		trans.commit();
 	}
-	
+
 	public void updateEntity(Entity entity) {
-		getSessionFactory().getCurrentSession().update(entity);
+		Session session = getSessionFactory().getCurrentSession();
+		Transaction trans = session.beginTransaction();
+		session.update(entity);
+		trans.commit();
 	}
 
 	public Entity getEntity(int id) {
-		List<?> list = getSessionFactory().getCurrentSession()
-											.createQuery("from Entity where id=?")
-									        .setParameter(0, id).list();
-		return (Entity)list.get(0);
+		Session session = getSessionFactory().getCurrentSession();
+		Transaction trans = session.beginTransaction();
+		
+		List<?> list = session
+				.createQuery("from com.mm.model.domain.Entity where id=?").setParameter(0, id)
+				.list();
+		
+		trans.commit();
+		return (Entity) list.get(0);
 	}
 
 	public List<Entity> getEntities() {
+		Session session = getSessionFactory().getCurrentSession();
+		Transaction trans = session.beginTransaction();
+		
 		@SuppressWarnings("unchecked")
-		List<Entity> list = (List<Entity>)getSessionFactory().getCurrentSession().createQuery("from Entity").list();
+		List<Entity> list = (List<Entity>) session.createQuery("from com.mm.model.domain.Entity").list();
+		
+		trans.commit();
 		return list;
 	}
 
