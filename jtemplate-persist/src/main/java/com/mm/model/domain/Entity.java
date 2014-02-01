@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@javax.persistence.Entity(name="ENTITY")
+@javax.persistence.Entity(name="Entity")
 public class Entity {
 	
 	@Id

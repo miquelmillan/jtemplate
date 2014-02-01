@@ -59,7 +59,7 @@ public class EntityDAO implements IEntityDAO {
 		Transaction trans = session.beginTransaction();
 		
 		List<?> list = session
-				.createQuery("from com.mm.model.domain.Entity where id=?").setParameter(0, id)
+				.createQuery("from Entity where id=?").setParameter(0, id)
 				.list();
 		
 		trans.commit();
@@ -71,7 +71,7 @@ public class EntityDAO implements IEntityDAO {
 		Transaction trans = session.beginTransaction();
 		
 		@SuppressWarnings("unchecked")
-		List<Entity> list = (List<Entity>) session.createQuery("from com.mm.model.domain.Entity").list();
+		List<Entity> list = (List<Entity>) session.createQuery("from Entity").list();
 		
 		trans.commit();
 		return list;
