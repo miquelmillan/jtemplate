@@ -13,7 +13,7 @@ import com.mm.module.one.IEntityService;
 
 /**
  * 
- * Entity Service Interface
+ * Entity Service
  * 
  * @author Miquel Millan
  * @version 1.0.0
